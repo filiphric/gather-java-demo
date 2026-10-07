@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f4">
+  <title>Gather — A little space for big ideas</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Gather home"><span class="brand-mark">g</span>gather<span class="brand-period">.</span></a>
+    <div class="workspace-label">YOUR WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <a class="nav-link active" href="#overview"><span aria-hidden="true">▦</span> Overview <span class="nav-dot"></span></a>
+      <a class="nav-link" href="#rooms"><span aria-hidden="true">▱</span> Our spaces</a>
+      <a class="nav-link" href="#bookings"><span aria-hidden="true">▤</span> Bookings <span id="booking-count" class="count">3</span></a>
+    </nav>
+    <div class="sidebar-note"><span class="little-spark" aria-hidden="true">✳</span><strong>Better, together.</strong><p>A change of space.<br>A spark of something good.</p></div>
+    <div class="workspace-user"><div class="avatar">G</div><div><strong>Gather workspace</strong><small>Bratislava · Local demo</small></div></div>
+  </aside>
+
+  <div class="page" id="overview">
+    <header class="topbar"><span>Workspace <span class="slash">/</span> <strong>Overview</strong></span><div class="topbar-right"><span class="open-dot"></span> Make room for good work <span class="mini-avatar">G</span></div></header>
+    <main>
+      <section class="page-heading"><div><div class="eyebrow">A LITTLE SPACE. A LOT OF POSSIBILITY.</div><h1>Come together. <em>Make things happen.</em></h1><p>Your people, your plans, the perfect place.</p></div><button class="button primary new-booking"><span aria-hidden="true">＋</span> New booking</button></section>
+
+      <section class="hero" aria-label="Workspace welcome"><div class="hero-copy"><span class="pill"><span class="open-dot"></span> YOUR NEXT GREAT IDEA STARTS HERE</span><h2>Find your<br><em>room to grow.</em></h2><p>A quiet corner for a big conversation.<br>A shared table for a fresh start.<br>There's a space for that.</p><a class="text-link" href="#rooms">Explore our spaces <span aria-hidden="true">↗</span></a></div><div class="hero-art" aria-hidden="true"><div class="art-grid"></div><div class="art-window"><i></i><i></i></div><div class="art-sun"></div><div class="art-plant"><i></i><i></i><i></i><b></b></div><div class="art-chair chair-one"></div><div class="art-chair chair-two"></div><div class="art-table"><span></span></div><div class="art-label"><span>✳</span> Great minds.<br>Shared spaces.</div></div></section>
+
+      <section class="stats" aria-label="Today's workspace activity"><div class="stat"><span class="stat-icon sage">▤</span><div><small>Bookings today</small><strong id="stat-bookings">—</strong></div><span class="stat-caption">A good day to connect</span></div><div class="stat"><span class="stat-icon peach">◷</span><div><small>Hours together</small><strong id="stat-hours">—</strong></div><span class="stat-caption">Time well spent</span></div><div class="stat"><span class="stat-icon lavender">▱</span><div><small>Thoughtful spaces</small><strong>3</strong></div><span class="stat-caption">Find your kind of room</span></div></section>
+
+      <section id="rooms" class="rooms-section"><div class="section-heading"><div><h2>A space for every idea<span class="small-badge">03</span></h2><p>Pick a room. Bring your people. We'll take care of the rest.</p></div><label class="capacity-label"><span>Guests</span><select id="capacity-filter"><option value="1">Any group size</option><option value="5">5+ people</option><option value="9">9+ people</option></select></label></div><div id="room-list" class="room-grid" aria-live="polite"></div></section>
+
+      <section id="bookings" class="bookings-section"><div class="section-heading"><div><h2>On the calendar</h2><p>A little look at what's bringing us together.</p></div><label class="date-label"><span class="sr-only">Bookings date</span><input id="booking-date" type="date"></label></div><div class="booking-table"><div class="table-head"><span>MEETING & SPACE</span><span>TIME</span><span>PEOPLE</span><span>TOTAL</span><span></span></div><div id="booking-list" aria-live="polite"></div></div></section>
+      <footer><span class="footer-brand">gather.</span><span>A little space for your next big idea.</span><span>Made for being together <span aria-hidden="true">✳</span></span></footer>
+    </main>
+  </div>
+
+  <dialog id="booking-dialog" aria-labelledby="dialog-title"><form id="booking-form"><div class="dialog-heading"><div><div class="eyebrow">MAKE SOME ROOM</div><h2 id="dialog-title">Good things start here.</h2></div><button class="icon-button" type="button" id="close-dialog" aria-label="Close booking form">×</button></div><p class="dialog-intro">Choose a space and a time to get together.</p><label>Meeting name<input name="title" required maxlength="80" placeholder="What's the occasion?"></label><div class="form-row"><label>Space<select name="roomId" id="room-select"></select></label><label>People<input name="attendees" type="number" min="1" max="12" value="2" required></label></div><label>Organizer email<input name="organizer" type="email" required maxlength="120" placeholder="you@example.com"></label><label>Date<input name="date" type="date" required></label><div class="form-row"><label>From<input name="start" type="time" min="08:00" max="17:45" step="900" value="09:00" required></label><label>Until<input name="end" type="time" min="08:15" max="18:00" step="900" value="10:00" required></label></div><div class="price-summary"><div><strong>Your space, sorted.</strong><small>EUR · Workspace time: Bratislava</small></div><strong id="quote-total">—</strong></div><p id="form-error" class="form-error" role="alert" hidden></p><button class="button primary submit-booking" type="submit">Confirm booking <span aria-hidden="true">↗</span></button><p class="form-note">Plans change. Cancel anytime from your calendar.</p></form></dialog>
+  <dialog id="cancel-dialog" aria-labelledby="cancel-title"><h2 id="cancel-title">Free up this space?</h2><p id="cancel-description"></p><div class="form-row"><button class="button" id="keep-booking" type="button">Keep booking</button><button class="button primary" id="confirm-cancel" type="button">Cancel booking</button></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <template id="room-template"><article class="room-card"><div class="room-visual"><img class="room-image" alt="" src=""><span class="room-capacity"></span><span class="room-number"></span></div><div class="room-body"><div class="room-title-row"><h3></h3><div class="room-price"></div></div><p class="room-description"></p><div class="room-bottom"><div class="amenities"></div><button class="room-book" aria-label="Book room">Book <span aria-hidden="true">↗</span></button></div></div></article></template>
+</body>
+</html>
