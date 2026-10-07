@@ -8,7 +8,7 @@ push_commands = ["/agentic_review"]
 comments_location_policy = "both"
 inline_comments_severity_threshold = 2
 enable_skills_agent = true
-compliance_user_guidelines = "Use the repository standards in best_practices.md and the workflows in .agents/skills when evaluating changes. Cite the applicable standard or skill in findings."
+compliance_user_guidelines = "Use the repository standards in .agents/rules/ (indexed by best_practices.md) and the workflows in .agents/skills when evaluating changes. Cite the applicable standard or skill in findings."
 
 [review_agent_ux]
 show_context_used = true

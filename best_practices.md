@@ -1,5 +1,13 @@
 # Gather engineering standards
 
+These repository-wide standards are also maintained in `.agents/rules/`:
+
+- [GATHER-001 — One source of truth for pricing](.agents/rules/shared-pricing.md)
+- [GATHER-002 — Decimal monetary amounts](.agents/rules/decimal-money.md)
+- [GATHER-003 — Constructor injection](.agents/rules/constructor-injection.md)
+- [GATHER-004 — Logs without personal data](.agents/rules/private-logging.md)
+- [GATHER-005 — Domain logic belongs in services](.agents/rules/service-boundaries.md)
+
 ## GATHER-001 — One source of truth for pricing
 Severity: error. Scope: Java services and controllers.
 
