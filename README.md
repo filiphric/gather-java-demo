@@ -24,6 +24,7 @@ GitHub Actions runs the same checks for pushes to `main` and pull requests.
 
 - Three rooms with capacity, equipment, and hourly rates.
 - Create and cancel reservations; overlapping bookings are rejected.
+- Weekly recurring reservations, with a selectable number of meetings.
 - Server-calculated prices for 15-minute time increments.
 - Responsive dashboard and keyboard-accessible booking form.
 

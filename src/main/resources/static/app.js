@@ -127,6 +127,7 @@ async function updateQuote() {
 
 function openBooking(roomId) {
   form.reset();
+  $('#occurrence-field').hidden = true;
   form.elements.roomId.value = roomId || state.rooms[0].id;
   form.elements.date.min = state.today;
   form.elements.date.value = $('#booking-date').value < state.today ? state.today : $('#booking-date').value;
@@ -135,6 +136,9 @@ function openBooking(roomId) {
   updateQuote();
 }
 
+$('#repeat-weekly').addEventListener('change', () => {
+  $('#occurrence-field').hidden = !$('#repeat-weekly').checked;
+});
 form.addEventListener('input', updateQuote);
 form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -143,11 +147,14 @@ form.addEventListener('submit', async event => {
   $('#form-error').hidden = true;
   try {
     const request = requestFromForm();
-    await api('/bookings', { method: 'POST', body: JSON.stringify(request) });
+    const recurring = $('#repeat-weekly').checked;
+    const path = recurring ? '/bookings/recurring' : '/bookings';
+    const payload = recurring ? { booking: request, occurrences: Number(form.elements.occurrences.value) } : request;
+    const result = await api(path, { method: 'POST', body: JSON.stringify(payload) });
     $('#booking-date').value = form.elements.date.value;
     dialog.close();
     await refreshBookings();
-    toast('You’re booked. Good things are on the calendar.');
+    toast(recurring ? `Your weekly series is booked. Total: ${money(result.total)}.` : 'You’re booked. Good things are on the calendar.');
   } catch (error) {
     $('#form-error').textContent = error.message;
     $('#form-error').hidden = false;
