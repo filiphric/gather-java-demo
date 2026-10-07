@@ -43,7 +43,7 @@ All dates use Europe/Bratislava local time, with daily opening hours of 08:00–
 - `src/main/java/dev/gather` — HTTP endpoints, domain services, in-memory repository.
 - `src/main/resources/static` — HTML, CSS, and JavaScript.
 - `src/test/java/dev/gather` — domain and HTTP tests.
-- `.agents/rulse/` — named review standards, indexed by `best_practices.md`.
+- `.agents/rules/` — named review standards, indexed by `best_practices.md`.
 - `.agents/skills` — booking and API implementation workflows.
 - `.pr_agent.toml` — Qodo draft-PR reviews, skill insights, and repository guidance.
 
